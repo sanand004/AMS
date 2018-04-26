@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 Mar, 2018 10:28:37 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.myapp.struts.Subject" table="SUBJECT" schema="PROJECT" optimistic-lock="version">
+        <id name="subjectId" type="string">
+            <column name="SUBJECT_ID" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="subjectName" type="string">
+            <column name="SUBJECT_NAME" length="10" />
+        </property>
+        <set name="teachers" table="TEACHER" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SUBJECT_SUBJECT_ID" length="10" />
+            </key>
+            <one-to-many class="com.myapp.struts.Teacher" />
+        </set>
+    </class>
+</hibernate-mapping>

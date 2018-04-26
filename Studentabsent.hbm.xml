@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 Mar, 2018 10:28:37 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.myapp.struts.Studentabsent" table="STUDENTABSENT" schema="PROJECT" optimistic-lock="version">
+        <composite-id name="id" class="com.myapp.struts.StudentabsentId">
+            <key-property name="studentRegdNo" type="string">
+                <column name="STUDENT_REGD_NO" length="15" />
+            </key-property>
+            <key-property name="batchid" type="string">
+                <column name="BATCHID" length="20" />
+            </key-property>
+            <key-property name="adate" type="string">
+                <column name="ADATE" length="7" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="student" class="com.myapp.struts.Student" update="false" insert="false" fetch="select">
+            <column name="STUDENT_REGD_NO" length="15" not-null="true" />
+        </many-to-one>
+        <many-to-one name="batch" class="com.myapp.struts.Batch" update="false" insert="false" fetch="select">
+            <column name="BATCHID" length="20" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

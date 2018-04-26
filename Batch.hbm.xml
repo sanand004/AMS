@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 Mar, 2018 10:28:37 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.myapp.struts.Batch" table="BATCH" schema="PROJECT" optimistic-lock="version">
+        <id name="batchid" type="string">
+            <column name="BATCHID" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="batchstartdate" type="string">
+            <column name="BATCHSTARTDATE" length="11" />
+        </property>
+        <property name="batchenddate" type="string">
+            <column name="BATCHENDDATE" length="11" />
+        </property>
+        <property name="batchdescription" type="string">
+            <column name="BATCHDESCRIPTION" length="40" />
+        </property>
+        <set name="teachers" table="TEACHER" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BATCH_BATCH_ID" length="20" />
+            </key>
+            <one-to-many class="com.myapp.struts.Teacher" />
+        </set>
+        <set name="teachers_1" table="BATCHTEACHER" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="BATCHID" length="20" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.myapp.struts.Teacher">
+                <column name="TEACHERID" length="10" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="students" table="STUDENT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BATCH_BATCH_ID" length="20" />
+            </key>
+            <one-to-many class="com.myapp.struts.Student" />
+        </set>
+        <set name="studentabsents" table="STUDENTABSENT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BATCHID" length="20" not-null="true" />
+            </key>
+            <one-to-many class="com.myapp.struts.Studentabsent" />
+        </set>
+        <set name="studentattends" table="STUDENTATTEND" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BATCHID" length="20" not-null="true" />
+            </key>
+            <one-to-many class="com.myapp.struts.Studentattend" />
+        </set>
+    </class>
+</hibernate-mapping>

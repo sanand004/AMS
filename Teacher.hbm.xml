@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 Mar, 2018 10:28:37 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.myapp.struts.Teacher" table="TEACHER" schema="PROJECT" optimistic-lock="version">
+        <id name="teacherId" type="string">
+            <column name="TEACHER_ID" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="subject" class="com.myapp.struts.Subject" fetch="select">
+            <column name="SUBJECT_SUBJECT_ID" length="10" />
+        </many-to-one>
+        <many-to-one name="batch" class="com.myapp.struts.Batch" fetch="select">
+            <column name="BATCH_BATCH_ID" length="20" />
+        </many-to-one>
+        <property name="teacherName" type="string">
+            <column name="TEACHER_NAME" length="10" />
+        </property>
+        <set name="batches" table="BATCHTEACHER" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="TEACHERID" length="10" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.myapp.struts.Batch">
+                <column name="BATCHID" length="20" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+
+<struts-config>
+    <form-beans>
+       
+       <form-bean name="Admin" type="com.myapp.struts.Admin"/>
+      <form-bean name="Batch" type="com.myapp.struts.Batch"/>
+      <form-bean name="Login" type="com.myapp.struts.Login"/>
+      <form-bean name="Student" type="com.myapp.struts.Student"/>
+      <form-bean name="Studentabsent" type="com.myapp.struts.Studentabsent"/>
+      <form-bean name="Studentattend" type="com.myapp.struts.Studentattend"/>
+      <form-bean name="Subject" type="com.myapp.struts.Subject"/>
+      <form-bean name="Teacher" type="com.myapp.struts.Teacher"/>
+    
+    </form-beans>
+    
+    <global-exceptions>
+    
+    </global-exceptions>
+
+    <global-forwards>
+        <forward name="welcome"  path="/Welcome.do"/>
+    </global-forwards>
+
+    <action-mappings>
+         <action input="/login.jsp" name="Login" path="/LoginServ" scope="session" type="com.myapp.struts.LoginServ">
+             <forward name="a"  path="/admin.jsp"/>
+              <forward name="s"  path="/CheckAttendance"/>
+              <forward name="t"  path="/teacher_asm.jsp"/>
+              <forward name="fail"  path="/login_asm.jsp?msg=Invalid Credentials"/>
+        </action>
+        <action input="/teacherupdate.jsp" name="Teacher" path="/TeachUpdServ" scope="session" type="com.myapp.struts.TeachUpdServ">
+            <forward name="success" path="/done.jsp"/>
+        </action>
+        <action input="/teacherinsert.jsp" name="Teacher" path="/TeachInsServ" scope="session" type="com.myapp.struts.TeachInsServ">
+            <forward name="success" path="/done.jsp"/>
+        </action>
+        <action input="/teacherdelete.jsp" name="Teacher" path="/TeachDelServ" scope="session" type="com.myapp.struts.TeachDelServ">
+            <forward name="success" path="/done.jsp"/>
+        </action>
+        <action input="/studentinsert.jsp" name="Student" path="/StuInsServ" scope="session" type="com.myapp.struts.StuInsServ">
+            <forward name="success" path="/done.jsp"/>
+        </action>
+        <action input="/studentdelete.jsp" name="Student" path="/StuDelServ" scope="session" type="com.myapp.struts.StuDelServ">
+            <forward name="success" path="/done.jsp"/>
+        </action>
+        
+        <action input="/studentupdate.jsp" name="Student" path="/StuUpdServ" scope="session" type="com.myapp.struts.StuUpdServ">
+            <forward name="success" path="/done.jsp"/>
+        </action>
+        <action input="/insertlogin.jsp" name="Login" path="/LoginInsServ" scope="session" type="com.myapp.struts.LoginInsServ">
+            <forward name="success" path="/done.jsp"/>
+        </action>
+        <action input="/deletelogin.jsp" name="Login" path="/LoginDelServ" scope="session" type="com.myapp.struts.LoginDelServ">
+            <forward name="success" path="/done.jsp"/>
+        </action>
+        
+        <action path="/ListStudServ"  type="com.myapp.struts.ListStudServ"/>
+         <action path="/SaveAttendance"  type="com.myapp.struts.SaveAttendance"/>
+            
+      
+         <action path="/CheckAttendance"  type="com.myapp.struts.CheckAttendance"/>
+        <action path="/Welcome" forward="/login_asm.jsp"/>
+    </action-mappings>
+    
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+    <message-resources parameter="com/myapp/struts/ApplicationResource"/>    
+    
+    <!-- ========================= Tiles plugin ===============================-->
+    <!--
+    This plugin initialize Tiles definition factory. This later can takes some
+    parameters explained here after. The plugin first read parameters from
+    web.xml, thenoverload them with parameters defined here. All parameters
+    are optional.
+    The plugin should be declared in each struts-config file.
+    - definitions-config: (optional)
+    Specify configuration file names. There can be several comma
+    separated file names (default: ?? )
+    - moduleAware: (optional - struts1.1)
+    Specify if the Tiles definition factory is module aware. If true
+    (default), there will be one factory for each Struts module.
+    If false, there will be one common factory for all module. In this
+    later case, it is still needed to declare one plugin per module.
+    The factory will be initialized with parameters found in the first
+    initialized plugin (generally the one associated with the default
+    module).
+    true : One factory per module. (default)
+    false : one single shared factory for all modules
+    - definitions-parser-validate: (optional)
+    Specify if xml parser should validate the Tiles configuration file.
+    true : validate. DTD should be specified in file header (default)
+    false : no validation
+
+    Paths found in Tiles definitions are relative to the main context.
+    -->
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+        <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />      
+        <set-property property="moduleAware" value="true" />
+    </plug-in>
+    
+    <!-- ========================= Validator plugin ================================= -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property
+            property="pathnames"
+            value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+  
+</struts-config>

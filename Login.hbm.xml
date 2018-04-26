@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 24 Mar, 2018 10:28:37 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.myapp.struts.Login" table="LOGIN" schema="PROJECT" optimistic-lock="version">
+        <id name="username" type="string">
+            <column name="USERNAME" length="15" />
+            <generator class="assigned" />
+        </id>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="15" />
+        </property>
+        <property name="userType" type="string">
+            <column name="USER_TYPE" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

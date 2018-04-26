@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-schema="PROJECT"/>
+  <table-filter match-name="BATCHTEACHER"/>
+  <table-filter match-name="ADMIN"/>
+  <table-filter match-name="BATCH"/>
+  <table-filter match-name="STUDENT"/>
+  <table-filter match-name="SUBJECT"/>
+  <table-filter match-name="STUDENTATTEND"/>
+  <table-filter match-name="STUDENTABSENT"/>
+  <table-filter match-name="TEACHER"/>
+  <table-filter match-name="LOGIN"/>
+</hibernate-reverse-engineering>
